@@ -1,0 +1,14 @@
+{
+  "name": "ng-calender-plus",
+  "version": "0.0.1",
+  "keywords": [
+    "angular",
+    "calender",
+    "scheduler"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
+  }
+}
