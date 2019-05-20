@@ -12,7 +12,7 @@ import { NgCalenderPlusModule } from 'ng-calender-plus';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgCalenderPlusModule
+    NgCalenderPlusModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

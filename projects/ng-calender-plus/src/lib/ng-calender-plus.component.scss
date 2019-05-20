@@ -1,0 +1,48 @@
+.date-cell{
+        background-color: aliceblue;
+    padding: 50px;
+    border: 1px solid blue;
+}
+
+.disable-cell{
+    background-color: aqua;
+}
+
+.today-cell{
+    border-bottom: 2px solid greenyellow;
+}
+
+input[type='button'] {
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    background-color: antiquewhite;
+}
+
+.display-month-year-item{
+        text-align: center;
+    font-weight: bold;
+}
+
+.previous-button-item{
+    grid-area: previousButtonArea;
+}
+
+.next-button-item{
+    grid-area: nextButtonArea;
+}
+
+.calender-item{
+    grid-area: calenderArea;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: 'previousButtonArea previousButtonArea . nextButtonArea nextButtonArea' 
+                        'calenderArea calenderArea calenderArea calenderArea calenderArea';
+  grid-template-rows: 10% 90%;
+  height: 700px;
+  padding: 10px;
+  grid-gap: 10px;
+  background-color: rgb(211, 191, 125);
+}

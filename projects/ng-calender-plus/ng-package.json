@@ -3,5 +3,9 @@
   "dest": "../../dist/ng-calender-plus",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "@angular/cdk",
+    "tslib"
+  ]
 }

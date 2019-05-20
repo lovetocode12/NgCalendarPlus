@@ -1,27 +1,38 @@
 # NgCalenderPlusApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
+# Development in Progress Please Don't install this Package But you view source code at Github
 
-## Development server
+Build Status npm version
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Comming soon
 
-## Code scaffolding
+Table of contents:
+Installation
+How it works
+Usage
+License
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+Installation
+npm i ng-calender-plus --save
+How it works
+ just a calender for now and will update complate usage once i completed my development
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Usage
 
-## Running unit tests
+Include theng-calender-plus module in your application at any place. The recommended way is to add forRoot initialization in the main app module.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+import { BrowserModule } from '@angular/platform-browser';
+import { NgCalenderPlusModule } from 'ng-calender-plus';
 
-## Running end-to-end tests
+@NgModule({
+    imports: [
+        BrowserModule,
+        NgCalenderPlusModule.forRoot()
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+License
+Licensed under MIT
