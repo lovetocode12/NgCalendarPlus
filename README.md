@@ -21,7 +21,7 @@ How it works
 Usage
 
 Include theng-calender-plus module in your application at any place. The recommended way is to add forRoot initialization in the main app module.
-
+```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgCalenderPlusModule } from 'ng-calender-plus';
 
@@ -33,6 +33,6 @@ import { NgCalenderPlusModule } from 'ng-calender-plus';
     bootstrap: [AppComponent]
 })
 export class AppModule { }
-
+```
 License
 Licensed under MIT
