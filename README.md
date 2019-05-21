@@ -6,19 +6,24 @@ Build Status npm version
 
 Comming soon
 
+![Work In Progress](/images/giphy.gif)
+
 Table of contents:
-Installation
-How it works
-Usage
-License
+* [Installation](#installation)
+* [How it works](#howitworks)
+* [Usage](#usage)
+* [License](#license)
 
 
-Installation
+## <a name="installation"></a>Installation
+```
 npm i ng-calender-plus --save
-How it works
- just a calender for now and will update complate usage once i completed my development
+```
+## <a name="howitworks"></a>How it works
 
-Usage
+ ####just a calender for now and will update complate usage once i completed my development
+
+## <a name="usage"></a>Usage
 
 Include theng-calender-plus module in your application at any place. The recommended way is to add forRoot initialization in the main app module.
 ```
@@ -34,5 +39,5 @@ import { NgCalenderPlusModule } from 'ng-calender-plus';
 })
 export class AppModule { }
 ```
-License
+## <a name="license">License
 Licensed under MIT
