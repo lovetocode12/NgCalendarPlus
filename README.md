@@ -1,10 +1,8 @@
 # NgCalenderPlusApp
 
-# Development in Progress Please Don't install this Package But you view source code at Github
-
-Build Status npm version
-
-Comming soon
+## Development in Progress
+## Only Basic Features are available now
+## But you can view source code at Github
 
 ![Work In Progress](/images/giphy.gif)
 
@@ -21,7 +19,7 @@ npm i ng-calender-plus --save
 ```
 ## <a name="howitworks"></a>How it works
 
- ####just a calender for now and will update complate usage once i completed my development
+#### just a calender for now and will update complate usage once i completed my development
 
 ## <a name="usage"></a>Usage
 
@@ -39,5 +37,27 @@ import { NgCalenderPlusModule } from 'ng-calender-plus';
 })
 export class AppModule { }
 ```
+#### Place this below code wherever you want to render the scheduler
+
+```
+<ar-ng-calender-plus  (DayClick)="dayClick($event)"></ar-ng-calender-plus>
+```
+# Events Available 
+
+## DayClick  which will emit day clicked event
+
+```
+constructor(private ngCalenderPlusService: NgCalenderPlusService) {
+    this.ngCalenderPlusService.getCalenderEvent().subscribe((data: any) => {
+      console.log('day clicked from service', data);
+    });
+  }
+
+  dayClick(data) {
+    console.log('day clicked from output emitter', data);
+  }
+
+```
+
 ## <a name="license">License
 Licensed under MIT

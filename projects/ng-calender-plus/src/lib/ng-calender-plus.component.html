@@ -1,24 +1,30 @@
 <div class="grid-container">
     <div class="previous-button-item">
-        <input type="button" value="Prev" (click)="prevMonthClick()">
+        <input type="button" class="button" value="Prev Month" (click)="prevMonthClick()">
     </div>
     <div class="display-month-year-item">{{getMonthName()}} {{currentYear}}</div>
     <div class="next-button-item">
-        <input type="button" value="Next" (click)="nextMonthClick()">
+        <input type="button" class="button" value="Next Month" (click)="nextMonthClick()">
+    </div>
+    <div class="week-item">
+        <div class="week-container">
+            <ng-container *ngFor="let week of weekDays">
+                <div class="week-cell-item">{{week.WeekDay}}</div>
+            </ng-container>
+        </div>
     </div>
     <div class="calender-item">
-        <table width="100%">
+        <div class="calender-container">
             <ng-container *ngFor="let weekNumber of [1,2,3,4,5]">
-                <tr>
-                    <ng-container *ngFor="let weekDay of [0,1,2,3,4,5,6]">
-                        <td *ngFor="let day of [getDay(weekNumber,weekDay)]">
-                            <div [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}"
+                <ng-container *ngFor="let weekDay of [0,1,2,3,4,5,6]">
+                    <div *ngFor="let day of [getDay(weekNumber,weekDay)]">
+                        <!-- <div [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}"
                                 class="date-cell">
-                                {{day?.DayNumber}}</div>
-                        </td>
-                    </ng-container>
-                </tr>
+                                {{day?.DayNumber}}</div> -->
+                        <ar-day-cell [day]="day"></ar-day-cell>
+                    </div>
+                </ng-container>
             </ng-container>
-        </table>
+        </div>
     </div>
 </div>
