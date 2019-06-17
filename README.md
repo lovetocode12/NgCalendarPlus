@@ -1,4 +1,4 @@
-# NgCalenderPlusApp
+# NgCalendarPlusApp
 
 ## Development in Progress
 ## Only Basic Features are available now
