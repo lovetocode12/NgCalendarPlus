@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Day } from '../constants';
-import { NgCalenderPlusService } from '../ng-calender-plus.service';
+import { NgCalendarPlusService } from '../ng-calendar-plus.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -12,13 +12,13 @@ export class DayCellComponent implements OnInit {
 
   @Input() day: any;
 
-  constructor(private ngCalenderPlusService: NgCalenderPlusService) { }
+  constructor(private NgCalendarPlusService: NgCalendarPlusService) { }
 
   ngOnInit() {
   }
 
   dayClick(day: Day) {
-    this.ngCalenderPlusService.setCalenderEvent(day);
+    this.NgCalendarPlusService.setCalenderEvent(day);
   }
 
 }

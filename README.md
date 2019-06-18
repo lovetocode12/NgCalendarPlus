@@ -15,7 +15,7 @@ Table of contents:
 
 ## <a name="installation"></a>Installation
 ```
-npm i ng-calender-plus --save
+npm i ng-calendar-plus --save
 ```
 ## <a name="howitworks"></a>How it works
 
@@ -23,15 +23,15 @@ npm i ng-calender-plus --save
 
 ## <a name="usage"></a>Usage
 
-Include theng-calender-plus module in your application at any place. The recommended way is to add forRoot initialization in the main app module.
+Include theng-calendar-plus module in your application at any place. The recommended way is to add forRoot initialization in the main app module.
 ```
 import { BrowserModule } from '@angular/platform-browser';
-import { NgCalenderPlusModule } from 'ng-calender-plus';
+import { NgCalendarPlusModule } from 'ng-calendar-plus';
 
 @NgModule({
     imports: [
         BrowserModule,
-        NgCalenderPlusModule.forRoot()
+        NgCalendarPlusModule.forRoot()
     ],
     bootstrap: [AppComponent]
 })
@@ -40,15 +40,15 @@ export class AppModule { }
 #### Place this below code wherever you want to render the scheduler
 
 ```
-<ar-ng-calender-plus  (DayClick)="dayClick($event)"></ar-ng-calender-plus>
+<ar-ng-calendar-plus  (DayClick)="dayClick($event)"></ar-ng-calendar-plus>
 ```
 # Events Available 
 
 ## DayClick  which will emit day clicked event
 
 ```
-constructor(private ngCalenderPlusService: NgCalenderPlusService) {
-    this.ngCalenderPlusService.getCalenderEvent().subscribe((data: any) => {
+constructor(private NgCalendarPlusService: NgCalendarPlusService) {
+    this.NgCalendarPlusService.getCalenderEvent().subscribe((data: any) => {
       console.log('day clicked from service', data);
     });
   }

@@ -1,15 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DialogOverlayRef, CustomDialogService } from './custom-dialog/custom-dialog.service';
 import { MonthNames, Day, WeekDays } from './constants';
-import { NgCalenderPlusService } from './ng-calender-plus.service';
+import { NgCalendarPlusService } from './ng-calendar-plus.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: 'ar-ng-calender-plus',
-  templateUrl: './ng-calender-plus.component.html',
-  styleUrls: ['./ng-calender-plus.component.scss']
+  selector: 'ar-ng-calendar-plus',
+  templateUrl: './ng-calendar-plus.component.html',
+  styleUrls: ['./ng-calendar-plus.component.scss']
 })
-export class NgCalenderPlusComponent implements OnInit {
+export class NgCalendarPlusComponent implements OnInit {
 
   // Inputs
 
@@ -23,7 +23,7 @@ export class NgCalenderPlusComponent implements OnInit {
   weekDays = WeekDays;
   currentMonth = this.date.getMonth();
   currentYear = this.date.getFullYear();
-  constructor(private dialogService: CustomDialogService, private ngCalenderPlusService: NgCalenderPlusService) {
+  constructor(private dialogService: CustomDialogService, private NgCalendarPlusService: NgCalendarPlusService) {
     // this.showPreview();
   }
 
@@ -37,7 +37,7 @@ export class NgCalenderPlusComponent implements OnInit {
 
   ngOnInit() {
     this.LoadMonth();
-    this.ngCalenderPlusService.getCalenderEvent().subscribe((data) => {
+    this.NgCalendarPlusService.getCalenderEvent().subscribe((data) => {
       this.DayClick.emit(data);
     });
   }

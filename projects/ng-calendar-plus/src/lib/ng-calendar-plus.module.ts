@@ -1,24 +1,24 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { NgCalenderPlusComponent } from './ng-calender-plus.component';
+import { NgCalendarPlusComponent } from './ng-calendar-plus.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
-import { NgCalenderPlusService } from './ng-calender-plus.service';
+import { NgCalendarPlusService } from './ng-calendar-plus.service';
 import { CustomDialogService } from './custom-dialog/custom-dialog.service';
 import { DayCellComponent } from './day-cell/day-cell.component';
 
 @NgModule({
-  declarations: [NgCalenderPlusComponent, CustomDialogComponent, DayCellComponent],
+  declarations: [NgCalendarPlusComponent, CustomDialogComponent, DayCellComponent],
   imports: [BrowserModule, OverlayModule
   ],
-  exports: [NgCalenderPlusComponent, DayCellComponent],
+  exports: [NgCalendarPlusComponent, DayCellComponent],
   entryComponents: [CustomDialogComponent]
 })
-export class NgCalenderPlusModule {
+export class NgCalendarPlusModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: NgCalenderPlusModule,
-      providers: [NgCalenderPlusService, CustomDialogService]
+      ngModule: NgCalendarPlusModule,
+      providers: [NgCalendarPlusService, CustomDialogService]
     }
   }
 }

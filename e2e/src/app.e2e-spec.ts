@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to ng-calender-plus-app!');
+    expect(page.getParagraphText()).toEqual('Welcome to ng-calendar-plus-app!');
   });
 });

@@ -18,11 +18,11 @@
       "dom"
     ],
     "paths": {
-      "ng-calender-plus": [
-        "dist/ng-calender-plus"
+      "ng-calendar-plus": [
+        "dist/ng-calendar-plus"
       ],
-      "ng-calender-plus/*": [
-        "dist/ng-calender-plus/*"
+      "ng-calendar-plus/*": [
+        "dist/ng-calendar-plus/*"
       ]
     }
   }

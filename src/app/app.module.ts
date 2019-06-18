@@ -1,10 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { NgCalenderPlusModule } from 'projects/ng-calender-plus/src/public_api';
-import { NgCalenderPlusModule } from 'ng-calender-plus';
+// import { NgCalendarPlusModule } from 'projects/ng-calendar-plus/src/public_api';
+import { NgCalendarPlusModule } from 'ng-calendar-plus';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,7 @@ import { NgCalenderPlusModule } from 'ng-calender-plus';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgCalenderPlusModule.forRoot()
+    NgCalendarPlusModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

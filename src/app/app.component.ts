@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgCalenderPlusService } from 'ng-calender-plus';
+import { NgCalendarPlusService } from 'ng-calendar-plus';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { NgCalenderPlusService } from 'ng-calender-plus';
 export class AppComponent {
   title = 'ng-calender-plus-app';
 
-  constructor(private ngCalenderPlusService: NgCalenderPlusService) {
+  constructor(private ngCalenderPlusService: NgCalendarPlusService) {
     this.ngCalenderPlusService.getCalenderEvent().subscribe((data: any) => {
       console.log('day clicked from service', data);
     });
