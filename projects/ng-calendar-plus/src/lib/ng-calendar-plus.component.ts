@@ -1,7 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Output, EventEmitter, Input, TemplateRef, AfterViewChecked, ContentChild,
+  ViewChild, ViewContainerRef, ComponentFactoryResolver
+} from '@angular/core';
 import { DialogOverlayRef, CustomDialogService } from './custom-dialog/custom-dialog.service';
 import { MonthNames, Day, WeekDays } from './constants';
 import { NgCalendarPlusService } from './ng-calendar-plus.service';
+import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,38 +13,39 @@ import { NgCalendarPlusService } from './ng-calendar-plus.service';
   templateUrl: './ng-calendar-plus.component.html',
   styleUrls: ['./ng-calendar-plus.component.scss']
 })
-export class NgCalendarPlusComponent implements OnInit {
+export class NgCalendarPlusComponent implements OnInit, AfterViewChecked {
 
   // Inputs
-
+  @Input() CustomTemplate: TemplateRef<any>;
   // Outputs
-
   @Output() DayClick = new EventEmitter<Day>();
-
 
   date = new Date();
   daysInMonths = [];
   weekDays = WeekDays;
   currentMonth = this.date.getMonth();
   currentYear = this.date.getFullYear();
-  constructor(private dialogService: CustomDialogService, private NgCalendarPlusService: NgCalendarPlusService) {
-    // this.showPreview();
-  }
 
-
-  showPreview() {
-    const dialogRef: DialogOverlayRef = this.dialogService.open();
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
+  constructor(private dialogService: CustomDialogService, private ngCalendarPlusService: NgCalendarPlusService,
+    public vcr: ViewContainerRef) {
   }
 
   ngOnInit() {
     this.LoadMonth();
-    this.NgCalendarPlusService.getCalenderEvent().subscribe((data) => {
+    this.ngCalendarPlusService.getCalenderEvent().subscribe((data) => {
       this.DayClick.emit(data);
     });
   }
+
+  ngAfterViewChecked(): void {
+    // this.showPreview();
+  }
+
+  showPreview() {
+    const dialogRef: DialogOverlayRef = this.dialogService.open(this.CustomTemplate, this.vcr);
+    dialogRef.close();
+  }
+
 
   LoadMonth(month = this.date.getMonth(), year = this.date.getFullYear()) {
     this.daysInMonths = [];
@@ -134,8 +139,6 @@ export class NgCalendarPlusComponent implements OnInit {
     return MonthNames[this.currentMonth];
   }
 
-  dayClick(day: Day) {
-    this.DayClick.emit(day);
-  }
+
 }
 

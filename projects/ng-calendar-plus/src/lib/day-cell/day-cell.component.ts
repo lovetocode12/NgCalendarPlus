@@ -12,13 +12,13 @@ export class DayCellComponent implements OnInit {
 
   @Input() day: any;
 
-  constructor(private NgCalendarPlusService: NgCalendarPlusService) { }
+  constructor(private ngCalendarPlusService: NgCalendarPlusService) { }
 
   ngOnInit() {
   }
 
   dayClick(day: Day) {
-    this.NgCalendarPlusService.setCalenderEvent(day);
+    this.ngCalendarPlusService.setCalenderEvent(day);
   }
 
 }

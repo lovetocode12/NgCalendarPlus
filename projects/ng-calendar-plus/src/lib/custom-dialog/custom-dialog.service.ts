@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { CustomDialogComponent } from './custom-dialog.component';
 import { OverlayRef } from '@angular/cdk/overlay';
 
@@ -27,7 +27,7 @@ export class CustomDialogService {
     // Inject overlay service
     constructor(private overlay: Overlay) { }
 
-    open(config: DialogConfig = {}) {
+    open(template: TemplateRef<any>, vcr: ViewContainerRef, config: DialogConfig = {}) {
         // Override default configuration
         const dialogConfig = { ...DEFAULT_CONFIG, ...config };
 
@@ -38,10 +38,11 @@ export class CustomDialogService {
         const dialogRef = new DialogOverlayRef(overlayRef);
 
         // Create ComponentPortal that can be attached to a PortalHost
-        const filePreviewPortal = new ComponentPortal(CustomDialogComponent);
+        const portal = new ComponentPortal(CustomDialogComponent);
+        // const portal = new TemplatePortal(template, vcr);
 
         // Attach ComponentPortal to PortalHost
-        overlayRef.attach(filePreviewPortal);
+        overlayRef.attach(portal);
 
         return dialogRef;
     }

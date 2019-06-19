@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./custom-dialog.component.scss']
 })
 export class CustomDialogComponent implements OnInit {
-
+  // Inputs
+  @Input() CustomTemplate: TemplateRef<any>;
   constructor() { }
 
   ngOnInit() {

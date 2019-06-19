@@ -1,2 +1,7 @@
-<div [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}" class="date-cell" (click)="dayClick(day)">
-  {{day?.DayNumber}}</div>
+<div style="position: relative" [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}"
+  class="date-cell">
+  <div style="top:1px;right: 1px;position: absolute;cursor: pointer;">
+    <i class="fa fa-plus" (click)="dayClick(day)"></i>
+  </div>
+  {{day?.DayNumber}}
+</div>

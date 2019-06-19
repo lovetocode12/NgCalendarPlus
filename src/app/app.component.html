@@ -1,2 +1,8 @@
-<ar-ng-calendar-plus (DayClick)="dayClick($event)"></ar-ng-calendar-plus>
+<ar-ng-calendar-plus (DayClick)="dayClick($event)" [CustomTemplate]="customTemplate">
+</ar-ng-calendar-plus>
+<ng-template #customTemplate>
+    <div>
+        Hi from Custom Templete
+    </div>
+</ng-template>
 <router-outlet></router-outlet>
