@@ -6,6 +6,7 @@ export class Day {
     WeekNumber = 0;
     Disable = false;
     IsToday = false;
+    Events: CalenderEvent[] = []
     constructor(init?: Partial<Day>) {
         Object.assign(this, init);
     }
@@ -44,3 +45,24 @@ export enum DayOfWeek {
     Saturday = 6,
 }
 
+export class CalenderEvent {
+    event_name = '';
+    date = new Date();
+    constructor(init?: Partial<CalenderEvent>) {
+        Object.assign(this, init);
+    }
+}
+export class CalenderEventOutput extends CalenderEvent {
+    event_type: EventTypes;
+    constructor(init?: Partial<CalenderEventOutput>) {
+        super();
+        Object.assign(this, init);
+    }
+}
+
+
+
+export enum EventTypes {
+    AddCalenderEvent = 'AddEventClick',
+    CalendarEvent = 'EventClick'
+}

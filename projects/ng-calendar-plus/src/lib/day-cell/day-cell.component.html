@@ -1,7 +1,34 @@
-<div style="position: relative" [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}"
-  class="date-cell">
-  <div style="top:1px;right: 1px;position: absolute;cursor: pointer;">
-    <i class="fa fa-plus" (click)="dayClick(day)"></i>
+<div class="day-container date-cell" [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}">
+  <div class="plus-container">
+    <div class="plus-icon" (click)="dayClick(day)"></div>
   </div>
-  {{day?.DayNumber}}
+  <div class="day-number-container">
+    <span>{{day?.DayNumber}}</span>
+  </div>
+  <div class="event-container" *ngIf="day?.Events.length">
+    <ng-container *ngFor="let event of day?.Events">
+      <div class="event">
+        <div class="event-name" (click)="eventClick(event)">{{event.event_name}}</div>
+      </div>
+    </ng-container>
+    <div class="more-button" *ngIf="day?.Events.length > 2" (click)="toggleEvents()">
+      <div class="event-name">+{{day?.Events.length -2 }} More Events</div>
+    </div>
+  </div>
+  <div class="events-popover" *ngIf="showAllEvents">
+    <div class="minus-container">
+      <div class="minus-icon"></div>
+    </div>
+    <div class="minus-container">
+      <div class="minus-icon" (click)="toggleEvents()"></div>
+    </div>
+    <div class="date-container">
+      <div class="date-text">{{day?.DayNumber}} {{getMonthName(day?.Month)}} {{day?.Year}}</div>
+    </div>
+    <div *ngFor="let event of day?.Events">
+      <div class="event-all">
+        <div class="event-name" (click)="eventClick(event)">{{event.event_name}}</div>
+      </div>
+    </div>
+  </div>
 </div>

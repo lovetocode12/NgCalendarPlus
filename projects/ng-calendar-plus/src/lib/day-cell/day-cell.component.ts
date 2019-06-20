@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Day } from '../constants';
+import { Day, CalenderEvent, EventTypes, CalenderEventOutput } from '../constants';
 import { NgCalendarPlusService } from '../ng-calendar-plus.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { NgCalendarPlusService } from '../ng-calendar-plus.service';
 export class DayCellComponent implements OnInit {
 
   @Input() day: any;
+  showAllEvents = false;
 
   constructor(private ngCalendarPlusService: NgCalendarPlusService) { }
 
@@ -18,7 +19,29 @@ export class DayCellComponent implements OnInit {
   }
 
   dayClick(day: Day) {
-    this.ngCalendarPlusService.setCalenderEvent(day);
+    const date = new Date(day.Year, day.Month, day.DayNumber);
+    const event = new CalenderEventOutput({
+      event_type: EventTypes.AddCalenderEvent,
+      date: date
+    });
+    this.ngCalendarPlusService.setCalenderEvent(event);
+  }
+
+  toggleEvents() {
+    this.showAllEvents = !this.showAllEvents;
+  }
+
+  getMonthName(month) {
+    return this.ngCalendarPlusService.getMonthName(month);
+  }
+
+  eventClick(event: CalenderEvent) {
+    const eventOuput = new CalenderEventOutput({
+      event_type: EventTypes.CalendarEvent,
+      date: event.date,
+      event_name: event.event_name
+    });
+    this.ngCalendarPlusService.setCalenderEvent(eventOuput);
   }
 
 }

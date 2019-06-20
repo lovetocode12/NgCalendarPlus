@@ -3,7 +3,7 @@ import {
   ViewChild, ViewContainerRef, ComponentFactoryResolver
 } from '@angular/core';
 import { DialogOverlayRef, CustomDialogService } from './custom-dialog/custom-dialog.service';
-import { MonthNames, Day, WeekDays } from './constants';
+import { MonthNames, Day, WeekDays, CalenderEvent } from './constants';
 import { NgCalendarPlusService } from './ng-calendar-plus.service';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
 
@@ -13,10 +13,11 @@ import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
   templateUrl: './ng-calendar-plus.component.html',
   styleUrls: ['./ng-calendar-plus.component.scss']
 })
-export class NgCalendarPlusComponent implements OnInit, AfterViewChecked {
+export class NgCalendarPlusComponent implements OnInit {
 
   // Inputs
   @Input() CustomTemplate: TemplateRef<any>;
+  @Input() Events: CalenderEvent[] = [];
   // Outputs
   @Output() DayClick = new EventEmitter<Day>();
 
@@ -35,10 +36,6 @@ export class NgCalendarPlusComponent implements OnInit, AfterViewChecked {
     this.ngCalendarPlusService.getCalenderEvent().subscribe((data) => {
       this.DayClick.emit(data);
     });
-  }
-
-  ngAfterViewChecked(): void {
-    // this.showPreview();
   }
 
   showPreview() {
@@ -65,16 +62,17 @@ export class NgCalendarPlusComponent implements OnInit, AfterViewChecked {
     let weekNumber = 1;
     // to add prev month days in present month
     for (let index = firstDayOfTheWeek; index > 0; index--) {
-      this.daysInMonths.push(new Day({
+      const prevMonthDay = new Day({
         DayNumber: lastDayPrevMonth - index + 1,
         DayOfTheWeek: firstDayOfTheWeek - index,
         Month: prevMonth,
         Year: prevYear,
         WeekNumber: weekNumber,
         Disable: true
-      }));
+      });
+      prevMonthDay.Events = this.getEventsByDate(prevMonthDay);
+      this.daysInMonths.push(prevMonthDay);
     }
-
     if (firstDayOfTheWeek === 0) {
       weekNumber--;
     }
@@ -84,27 +82,31 @@ export class NgCalendarPlusComponent implements OnInit, AfterViewChecked {
       if (new Date(year, month, index).getDay() === 0) {
         weekNumber++;
       }
-      this.daysInMonths.push(new Day({
+      const day = new Day({
         DayNumber: index,
         DayOfTheWeek: new Date(year, month, index).getDay(),
         Month: month,
         Year: year,
         WeekNumber: weekNumber,
         IsToday: (index === this.date.getDate() && month === this.date.getMonth() && year === this.date.getFullYear()) ? true : false
-      }));
+      });
+      day.Events = this.getEventsByDate(day);
+      this.daysInMonths.push(day);
     }
 
     // to add next month days in present month
     let firstDayNextMonth = 1;
     for (let index = lastDayOfTheWeek; index < 6; index++) {
-      this.daysInMonths.push(new Day({
+      const nextMonthDay = new Day({
         DayNumber: firstDayNextMonth,
         DayOfTheWeek: index + 1,
         Month: nextMonth,
         Year: nextYear,
         WeekNumber: weekNumber,
         Disable: true,
-      }));
+      });
+      nextMonthDay.Events = this.getEventsByDate(nextMonthDay);
+      this.daysInMonths.push(nextMonthDay);
       firstDayNextMonth++;
     }
   }
@@ -136,9 +138,13 @@ export class NgCalendarPlusComponent implements OnInit, AfterViewChecked {
   }
 
   getMonthName() {
-    return MonthNames[this.currentMonth];
+    return this.ngCalendarPlusService.getMonthName(this.currentMonth);
   }
 
+  getEventsByDate(day: Day) {
+    return this.Events.filter((event) => this.ngCalendarPlusService.GetFormattedDate(event.date) ===
+      this.ngCalendarPlusService.GetFormattedDateByDay(day));
+  }
 
 }
 
