@@ -1,8 +1,6 @@
 # NgCalendarPlusApp
 
 ## Development in Progress
-## Only Basic Features are available now
-## But you can view source code at Github
 
 ![Work In Progress](/images/giphy.gif)
 
