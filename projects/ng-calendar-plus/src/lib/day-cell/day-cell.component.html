@@ -1,4 +1,5 @@
-<div class="day-container date-cell" [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}">
+<div class="day-container date-cell" droppable [dragDestination]="day"
+  [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}">
   <div class="plus-container">
     <div class="plus-icon" (click)="dayClick(day)"></div>
   </div>
@@ -7,7 +8,7 @@
   </div>
   <div class="event-container" *ngIf="day?.Events.length">
     <ng-container *ngFor="let event of day?.Events">
-      <div class="event">
+      <div class="event" draggable [dragData]="event" [dragSource]="day">
         <div class="event-name" (click)="eventClick(event)">{{event.event_name}}</div>
       </div>
     </ng-container>
@@ -26,7 +27,7 @@
       <div class="date-text">{{day?.DayNumber}} {{getMonthName(day?.Month)}} {{day?.Year}}</div>
     </div>
     <div *ngFor="let event of day?.Events">
-      <div class="event-all">
+      <div class="event-all" draggable [dragData]="event" [dragSource]="day">
         <div class="event-name" (click)="eventClick(event)">{{event.event_name}}</div>
       </div>
     </div>

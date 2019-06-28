@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Day, CalenderEvent, EventTypes, CalenderEventOutput } from '../constants';
 import { NgCalendarPlusService } from '../ng-calendar-plus.service';
 
@@ -9,6 +9,7 @@ import { NgCalendarPlusService } from '../ng-calendar-plus.service';
   styleUrls: ['./day-cell.component.scss']
 })
 export class DayCellComponent implements OnInit {
+
 
   @Input() day: any;
   showAllEvents = false;

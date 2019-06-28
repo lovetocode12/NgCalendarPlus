@@ -3,7 +3,7 @@
   grid-template-areas: 'previousButtonArea . displayMonthYearItem displayMonthYearItem displayMonthYearItem . nextButtonArea'
                         'weekArea weekArea weekArea weekArea weekArea weekArea weekArea' 
                         'calenderArea calenderArea calenderArea calenderArea calenderArea calenderArea calenderArea';
-  grid-template-rows: 9% 7% 84%;
+  grid-template-rows: 8% 10% 82%;
   grid-template-columns: 15% 14% 14% 14% 14% 14% 15%;
   justify-content: center;
   height: 700px;

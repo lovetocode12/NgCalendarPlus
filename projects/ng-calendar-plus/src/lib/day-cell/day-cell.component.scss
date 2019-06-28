@@ -14,8 +14,7 @@
     cursor: pointer;
 }
 .date-cell{
-    background-color: aliceblue;
-    border: 1px solid cadetblue;
+    border: 1px solid #ddd;
     text-align: -webkit-center;
     margin: auto;
     padding: 51px;
@@ -23,7 +22,7 @@
 }
 .disable-cell{
     /* width: 60%; */
-    background-color:darkgray;
+    background-color:#d0cfd2;
 }
 
 .today-cell{
@@ -76,9 +75,9 @@ font-family:'Times New Roman', Times, serif;
 }
 
 .event{
-    background-color: darkgray;
-    border: 1px solid cadetblue;
-    border-block-end: cadetblue;
+    background-color: #3788FD;
+    border: 1px solid #ddd;
+    border-block-end: #ddd;
     font-size: 12px;
     padding: 2px;
 }
@@ -94,21 +93,22 @@ font-family:'Times New Roman', Times, serif;
 .event-name{
     text-overflow: ellipsis;
     width: 100px;
+    color: #fff;
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
 }
 
 .more-button{
-    background-color: greenyellow;
+    background-color: #2f52ff;
     border: 1px solid cadetblue;
     font-size: 12px;
 }
 
 .event-all{
-    background-color:  darkgray;
-    border: 1px solid cadetblue;
-    border-block-end: cadetblue;
+    background-color: #3788FD;
+    border: 1px solid #ddd;
+    border-block-end: #ddd;
     font-size: 12px;
     padding: 2px;
 }
@@ -120,5 +120,5 @@ font-family:'Times New Roman', Times, serif;
     position: absolute;
     width: 180px;
     padding: 30px 3px 2px 3px;
-    background: darkseagreen;
+    background: #ddd;
 }

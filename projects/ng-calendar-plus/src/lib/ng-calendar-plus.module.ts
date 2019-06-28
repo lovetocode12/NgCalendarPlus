@@ -6,12 +6,23 @@ import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
 import { NgCalendarPlusService } from './ng-calendar-plus.service';
 import { CustomDialogService } from './custom-dialog/custom-dialog.service';
 import { DayCellComponent } from './day-cell/day-cell.component';
+import { NgDragDropPlusModule } from 'ng-drag-drop-plus';
 
 @NgModule({
-  declarations: [NgCalendarPlusComponent, CustomDialogComponent, DayCellComponent],
-  imports: [BrowserModule, OverlayModule
+  declarations: [
+    NgCalendarPlusComponent,
+    CustomDialogComponent,
+    DayCellComponent
   ],
-  exports: [NgCalendarPlusComponent, DayCellComponent],
+  imports: [
+    BrowserModule,
+    OverlayModule,
+    NgDragDropPlusModule.forRoot()
+  ],
+  exports: [
+    NgCalendarPlusComponent,
+    DayCellComponent
+  ],
   entryComponents: [CustomDialogComponent]
 })
 export class NgCalendarPlusModule {

@@ -15,7 +15,7 @@
     </div>
     <div class="calender-item">
         <div class="calender-container">
-            <ng-container *ngFor="let weekNumber of [1,2,3,4,5]">
+            <ng-container *ngFor="let weekNumber of [1,2,3,4,5,6]">
                 <ng-container *ngFor="let weekDay of [0,1,2,3,4,5,6]">
                     <div *ngFor="let day of [getDay(weekNumber,weekDay)]">
                         <!-- <div [ngClass]="{'disable-cell': day?.Disable,'today-cell' : day?.IsToday}"

@@ -47,7 +47,7 @@ export enum DayOfWeek {
 
 export class CalenderEvent {
     event_name = '';
-    date = new Date();
+    date: any = '';
     constructor(init?: Partial<CalenderEvent>) {
         Object.assign(this, init);
     }

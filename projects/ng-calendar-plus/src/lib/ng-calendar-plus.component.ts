@@ -1,11 +1,12 @@
 import {
   Component, OnInit, Output, EventEmitter, Input, TemplateRef, AfterViewChecked, ContentChild,
-  ViewChild, ViewContainerRef, ComponentFactoryResolver
+  ViewChild, ViewContainerRef, ComponentFactoryResolver, SimpleChanges, OnChanges
 } from '@angular/core';
 import { DialogOverlayRef, CustomDialogService } from './custom-dialog/custom-dialog.service';
 import { MonthNames, Day, WeekDays, CalenderEvent } from './constants';
 import { NgCalendarPlusService } from './ng-calendar-plus.service';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
+import { NgDragDropPlusService } from 'ng-drag-drop-plus';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -13,13 +14,14 @@ import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
   templateUrl: './ng-calendar-plus.component.html',
   styleUrls: ['./ng-calendar-plus.component.scss']
 })
-export class NgCalendarPlusComponent implements OnInit {
+export class NgCalendarPlusComponent implements OnInit, OnChanges {
 
   // Inputs
   @Input() CustomTemplate: TemplateRef<any>;
   @Input() Events: CalenderEvent[] = [];
   // Outputs
   @Output() DayClick = new EventEmitter<Day>();
+  @Output() EventChange = new EventEmitter<any>();
 
   date = new Date();
   daysInMonths = [];
@@ -27,7 +29,9 @@ export class NgCalendarPlusComponent implements OnInit {
   currentMonth = this.date.getMonth();
   currentYear = this.date.getFullYear();
 
-  constructor(private dialogService: CustomDialogService, private ngCalendarPlusService: NgCalendarPlusService,
+  constructor(private dialogService: CustomDialogService,
+    private ngCalendarPlusService: NgCalendarPlusService,
+    private ngDragDropPlusService: NgDragDropPlusService,
     public vcr: ViewContainerRef) {
   }
 
@@ -35,6 +39,19 @@ export class NgCalendarPlusComponent implements OnInit {
     this.LoadMonth();
     this.ngCalendarPlusService.getCalenderEvent().subscribe((data) => {
       this.DayClick.emit(data);
+    });
+    this.ngDragDropPlusService.onDropSub.subscribe((dropEvent: any) => this.dropEvent(dropEvent));
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.LoadMonth();
+  }
+
+
+  dropEvent(dropEvent) {
+    this.EventChange.emit({
+      event: dropEvent.data,
+      newDate: this.ngCalendarPlusService.GetFormattedDateByDay(dropEvent.destination)
     });
   }
 
@@ -96,10 +113,13 @@ export class NgCalendarPlusComponent implements OnInit {
 
     // to add next month days in present month
     let firstDayNextMonth = 1;
-    for (let index = lastDayOfTheWeek; index < 6; index++) {
+    let weekNumberOfDay = lastDayOfTheWeek;
+    for (let index = this.daysInMonths.length; index < 42; index++) {
+      weekNumber = this.daysInMonths.length === 35 ? weekNumber + 1 : weekNumber;
+      weekNumberOfDay++;
       const nextMonthDay = new Day({
         DayNumber: firstDayNextMonth,
-        DayOfTheWeek: index + 1,
+        DayOfTheWeek: weekNumberOfDay > 6 ? weekNumberOfDay - 7 : weekNumberOfDay,
         Month: nextMonth,
         Year: nextYear,
         WeekNumber: weekNumber,
@@ -114,7 +134,7 @@ export class NgCalendarPlusComponent implements OnInit {
   getDay(weekNumber, weekDay) {
     return this.daysInMonths.filter((day: Day, index) => {
       return day.DayOfTheWeek === weekDay && day.WeekNumber === weekNumber;
-    })[0]; //.map((day: Day) => day.DayNumber);
+    })[0];
   }
 
   nextMonthClick() {
@@ -142,8 +162,11 @@ export class NgCalendarPlusComponent implements OnInit {
   }
 
   getEventsByDate(day: Day) {
-    return this.Events.filter((event) => this.ngCalendarPlusService.GetFormattedDate(event.date) ===
-      this.ngCalendarPlusService.GetFormattedDateByDay(day));
+    return this.Events.filter((event) => event.date ===
+      this.ngCalendarPlusService.GetFormattedDateByDay(day)).map((event) => new CalenderEvent({
+        date: event.date,
+        event_name: event.event_name
+      }));
   }
 
 }

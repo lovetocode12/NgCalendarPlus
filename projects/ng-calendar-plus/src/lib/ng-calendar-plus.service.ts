@@ -28,6 +28,16 @@ export class NgCalendarPlusService {
     return year + '-' + month + '-' + day;
   }
 
+  GetDaterfromString(dateStr: '', dateFormat = 'yyyy-mm-dd') {
+    let year, month, day;
+    if (dateFormat === 'yyyy-mm-dd') {
+      day = dateStr.split('-')[2];
+      month = dateStr.split('-')[1];
+      year = dateStr.split('-')[0];
+    }
+    return new Date(year, month, day);
+  }
+
   GetFormattedDateByDay(date: Day) {
     let year, month, day;
     month = date.Month + 1;
