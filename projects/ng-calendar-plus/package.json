@@ -1,12 +1,16 @@
 {
   "name": "ng-calendar-plus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "angular",
     "calendar",
     "scheduler",
     "angular calendar",
-    "angular scheduler"
+    "angular scheduler",
+    "events",
+    "ng",
+    "plus",
+    "calender"
   ],
   "repository": {
     "type": "git",
